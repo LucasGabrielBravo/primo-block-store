@@ -1,0 +1,199 @@
+[
+  {
+    "id": "td9rnxw51iq7iw4",
+    "name": "lists",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "rdc1plni",
+        "name": "user",
+        "type": "relation",
+        "system": false,
+        "required": true,
+        "options": {
+          "collectionId": "_pb_users_auth_",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": [
+            "name"
+          ]
+        }
+      },
+      {
+        "id": "zi1x9b4u",
+        "name": "blocks",
+        "type": "relation",
+        "system": false,
+        "required": false,
+        "options": {
+          "collectionId": "c3hig9a14oyriy2",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": null,
+          "displayFields": [
+            "id",
+            "user"
+          ]
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "user.id = @request.auth.id",
+    "viewRule": "user.id = @request.auth.id",
+    "createRule": "@request.auth.id != \"\"",
+    "updateRule": "user.id = @request.auth.id",
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "c3hig9a14oyriy2",
+    "name": "blocks",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "bwdbyzmw",
+        "name": "user",
+        "type": "relation",
+        "system": false,
+        "required": true,
+        "options": {
+          "collectionId": "_pb_users_auth_",
+          "cascadeDelete": true,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": [
+            "name"
+          ]
+        }
+      },
+      {
+        "id": "gi2sqzlg",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "options": {
+          "min": null,
+          "max": 255,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "kruimcja",
+        "name": "symbol",
+        "type": "json",
+        "system": false,
+        "required": true,
+        "options": {}
+      },
+      {
+        "id": "uoa20jgv",
+        "name": "public",
+        "type": "bool",
+        "system": false,
+        "required": false,
+        "options": {}
+      },
+      {
+        "id": "k8xykyyc",
+        "name": "category",
+        "type": "select",
+        "system": false,
+        "required": true,
+        "options": {
+          "maxSelect": 1,
+          "values": [
+            "404",
+            "Banners",
+            "Blog",
+            "Contact",
+            "Content",
+            "CTA",
+            "FAQs",
+            "Feature",
+            "Footer",
+            "Form",
+            "Header",
+            "Hero",
+            "Logo",
+            "Navbar",
+            "Newsletter",
+            "Order",
+            "Pricing",
+            "Product",
+            "Stats",
+            "Team",
+            "Testimonials",
+            "Others"
+          ]
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "public = true ||\nuser.id = @request.auth.id",
+    "viewRule": "public = true ||\nuser.id = @request.auth.id",
+    "createRule": "@request.auth.id != \"\"",
+    "updateRule": "user.id = @request.auth.id",
+    "deleteRule": "user.id = @request.auth.id",
+    "options": {}
+  },
+  {
+    "id": "_pb_users_auth_",
+    "name": "users",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "id": "users_name",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "users_avatar",
+        "name": "avatar",
+        "type": "file",
+        "system": false,
+        "required": false,
+        "options": {
+          "maxSelect": 1,
+          "maxSize": 5242880,
+          "mimeTypes": [
+            "image/jpeg",
+            "image/png",
+            "image/svg+xml",
+            "image/gif",
+            "image/webp"
+          ],
+          "thumbs": null,
+          "protected": false
+        }
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "id = @request.auth.id",
+    "deleteRule": "id = @request.auth.id",
+    "options": {
+      "allowEmailAuth": true,
+      "allowOAuth2Auth": false,
+      "allowUsernameAuth": false,
+      "exceptEmailDomains": null,
+      "manageRule": null,
+      "minPasswordLength": 8,
+      "onlyEmailDomains": null,
+      "requireEmail": true
+    }
+  }
+]
